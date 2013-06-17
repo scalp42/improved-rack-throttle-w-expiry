@@ -5,15 +5,15 @@
 
 Gem::Specification.new do |s|
   s.name = "improved-rack-throttle-w-expiry"
-  s.version = "0.7.1"
+  s.version = "0.8.0"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Ben Somers", "Arto Bendiken", "Brendon Murphy", "Shane Moore"]
-  s.date = "2013-05-09"
+  s.date = "2013-06-17"
   s.description = "Rack middleware for rate-limiting incoming HTTP requests."
   s.email = "shane@ninja.ie"
   s.extra_rdoc_files = [
-    "README.md"
+    "README.md", "ROADMAP.md"
   ]
   s.files = [
     ".document",
