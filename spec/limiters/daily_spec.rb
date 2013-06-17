@@ -22,6 +22,10 @@ describe Rack::Throttle::Daily do
     4.times { get "/foo" }
     last_response.body.should show_throttled_response
   end
-  
+
+  it "should have an associated default_ttl" do
+    app.default_ttl.should be_an_instance_of Fixnum
+  end
+
   # TODO mess with time travelling and requests to make sure no overlap
 end
