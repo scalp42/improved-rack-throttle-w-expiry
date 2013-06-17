@@ -24,7 +24,7 @@ describe Rack::Throttle::Daily do
   end
 
   it "should have an associated default_ttl" do
-    app.default_ttl.should be_an_instance_of Fixnum
+    app.class.default_ttl.should be_an_instance_of Fixnum
   end
 
   # TODO mess with time travelling and requests to make sure no overlap

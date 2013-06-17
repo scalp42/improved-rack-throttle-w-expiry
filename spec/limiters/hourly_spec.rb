@@ -24,7 +24,7 @@ describe Rack::Throttle::Hourly do
   end
 
   it "should have an associated default_ttl" do
-    app.default_ttl.should be_an_instance_of Fixnum
+    app.class.default_ttl.should be_an_instance_of Fixnum
   end
 
 
