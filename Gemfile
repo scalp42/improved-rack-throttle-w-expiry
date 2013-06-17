@@ -3,6 +3,8 @@ source "http://rubygems.org"
 gem "rack", ">= 1.0.0"
 
 group :development, :test do
+  gem 'redis'
+  gem 'debugger'
   gem 'timecop'
   gem 'rack-test'
   gem 'rspec'
