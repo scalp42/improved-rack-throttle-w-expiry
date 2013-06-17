@@ -141,7 +141,7 @@ module Rack; module Throttle
     # @param  [String] key
     # @param  [Object] value
     # @return [void]
-    def cache_set(key, value)
+    def cache_set(key, value, scheme = Hourly)
       case
       when cache.respond_to?(:[]=)
         begin
@@ -156,6 +156,8 @@ module Rack; module Throttle
         end
       when cache.respond_to?(:set)
         cache.set(key, value)
+      when cache.respond_to?(:expire)
+        cache.expire(key, scheme.DEFAULT_TTL)
       end
     end
 
