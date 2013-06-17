@@ -21,6 +21,9 @@ module Rack; module Throttle
     # @param  [#call]                  app
     # @param  [Hash{Symbol => Object}] options
     # @option options [Integer] :max   (3600)
+
+    INTERVAL = ENV['RACK_THROTTLE_HOURLY_TTL'] || 3600
+
     def initialize(app, options = {})
       super
     end
