@@ -22,7 +22,7 @@ module Rack; module Throttle
     # @param  [Hash{Symbol => Object}] options
     # @option options [Integer] :max   (86400)
 
-    INTERVAL = ENV['RACK_THROTTLE_DAILY_TTL'] || 86400
+    DEFAULT_TTL = ENV['RACK_THROTTLE_DAILY_TTL'] || 86400
 
     def initialize(app, options = {})
       super
