@@ -4,14 +4,14 @@
 # -*- encoding: utf-8 -*-
 
 Gem::Specification.new do |s|
-  s.name = "improved-rack-throttle"
+  s.name = "improved-rack-throttle-w-expiry"
   s.version = "0.7.1"
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
-  s.authors = ["Ben Somers", "Arto Bendiken", "Brendon Murphy"]
+  s.authors = ["Ben Somers", "Arto Bendiken", "Brendon Murphy", "Shane Moore"]
   s.date = "2013-05-09"
   s.description = "Rack middleware for rate-limiting incoming HTTP requests."
-  s.email = "somers.ben@gmail.com"
+  s.email = "shane@ninja.ie"
   s.extra_rdoc_files = [
     "README.md"
   ]
@@ -29,7 +29,7 @@ Gem::Specification.new do |s|
     "etc/memcache.ru",
     "etc/memcached.ru",
     "etc/redis.ru",
-    "improved-rack-throttle.gemspec",
+    "improved-rack-throttle-w-expiry.gemspec",
     "lib/rack/throttle.rb",
     "lib/rack/throttle/limiters/daily.rb",
     "lib/rack/throttle/limiters/hourly.rb",
@@ -52,7 +52,7 @@ Gem::Specification.new do |s|
     "spec/matchers/user_agent_matcher_spec.rb",
     "spec/spec_helper.rb"
   ]
-  s.homepage = "http://github.com/bensomers/improved-rack-throttle"
+  s.homepage = "http://github.com/Rooktone/improved-rack-throttle-w-expiry"
   s.licenses = ["Public Domain"]
   s.require_paths = ["lib"]
   s.rubygems_version = "1.8.25"
