@@ -22,8 +22,6 @@ module Rack; module Throttle
     # @param  [Hash{Symbol => Object}] options
     # @option options [Integer] :max   (3600)
 
-    DEFAULT_TTL = ENV['RACK_THROTTLE_HOURLY_TTL'] || 3600
-
     def initialize(app, options = {})
       super
     end
@@ -31,6 +29,10 @@ module Rack; module Throttle
     ##
     def max_per_hour
       @max_per_hour ||= options[:max_per_hour] || options[:max] || 3_600
+    end
+
+    def default_ttl
+      ENV['RACK_THROTTLE_DAILY_TTL'] || 86400
     end
 
     alias_method :max_per_window, :max_per_hour
