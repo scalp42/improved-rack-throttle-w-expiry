@@ -31,7 +31,7 @@ module Rack; module Throttle
       @max_per_hour ||= options[:max_per_day] || options[:max] || 86_400
     end
 
-    def default_ttl
+    def self.default_ttl
       ENV['RACK_THROTTLE_DAILY_TTL'] || 86400
     end
 
