@@ -143,23 +143,25 @@ module Rack; module Throttle
     # @return [void]
     def cache_set(key, value, scheme = Hourly)
       case
-      when cache.respond_to?(:[]=)
-        begin
-          cache[key] = value
-        rescue TypeError => e
-          # GDBM throws a "TypeError: can't convert Float into String"
-          # exception when trying to store a Float. On the other hand, we
-          # don't want to unnecessarily coerce the value to a String for
-          # any stores that do support other data types (e.g. in-memory
-          # hash objects). So, this is a compromise.
-          cache[key] = value.to_s
-        end
-      when cache.respond_to?(:set)
-        cache.set(key, value)
-      when cache.respond_to?(:expire)
-        cache.expire(key, scheme.DEFAULT_TTL)
+        when cache.respond_to?(:[]=)
+          begin
+            cache[key] = value
+          rescue TypeError => e
+            # GDBM throws a "TypeError: can't convert Float into String"
+            # exception when trying to store a Float. On the other hand, we
+            # don't want to unnecessarily coerce the value to a String for
+            # any stores that do support other data types (e.g. in-memory
+            # hash objects). So, this is a compromise.
+            cache[key] = value.to_s
+          end
+        when cache.respond_to?(:set)
+          cache.set(key, value)
+      end
+      if cache.respond_to?(:expire)
+        cache.expire(key, scheme.default_ttl)
       end
     end
+
 
     ##
     # @param  [Rack::Request] request
