@@ -1,16 +1,12 @@
 HTTP Request Rate Limiter for Rack Applications
 ===============================================
 
-[![Code Climate](https://codeclimate.com/badge.png)](https://codeclimate.com/github/bensomers/improved-rack-throttle)
-[![Dependency Status](https://gemnasium.com/bensomers/improved-rack-throttle.png)](https://gemnasium.com/bensomers/improved-rack-throttle)
-[![Build Status](https://travis-ci.org/bensomers/improved-rack-throttle.png?branch=master)](https://travis-ci.org/bensomers/improved-rack-throttle)
-
 This is a [Rack][] middleware that provides logic for rate-limiting incoming
 HTTP requests to Rack applications. You can use `Rack::Throttle` with any
 Ruby web framework based on Rack, including with Ruby on Rails 3.0 and with
 Sinatra.
 
-* <http://github.com/bensomers/improved-rack-throttle>
+* <https://github.com/rooktone/improved-rack-throttle-w-expiry>
 
 Features
 --------
@@ -30,6 +26,7 @@ Features
 * Compatible with the [memcached][], [memcache-client][], [memcache][] and
   [redis][] gems.
 * Compatible with [Heroku][]'s [memcached add-on][Heroku memcache]
+* THE BIG DIFFERENCE: Comes with redis expiry built in. No more relying on LRU. The cache keys won't hang around forever while killing all scalability.
 
 Examples
 --------
@@ -219,18 +216,19 @@ Download
 
 To get a local working copy of the development repository, do:
 
-    % git clone git://github.com/bensomers/improved-rack-throttle.git
+    % git clone git://github.com/rooktone/improved-rack-throttle-w-expiry
 
 Alternatively, you can download the latest development version as a tarball
 as follows:
 
-    % wget http://github.com/bensomers/improved-rack-throttle/tarball/master
+    % wget https://github.com/rooktone/improved-rack-throttle-w-expiry/tarball/master
 
 Authors
 -------
 * [Ben Somers](mailto:somers.ben@gmail.com) - <http://www.somanyrobots.com>
 * [Arto Bendiken](mailto:arto.bendiken@gmail.com) - <http://ar.to/>
 * [Brendon Murphy](mailto:disposable.20.xternal@spamourmet.com>) - <http://www.techfreak.net/>
+* [Shane Moore](mailto:shane@ninja.ie>) - <http://ninja.ie/>
 
 License
 -------
@@ -247,7 +245,3 @@ information, see <http://unlicense.org/> or the accompanying UNLICENSE file.
 [Heroku]:          http://heroku.com/
 [Heroku memcache]: http://docs.heroku.com/memcache
 
-Support
--------
-
-Recent work on improved-rack-throttle has been funded by Rafter, Inc.
