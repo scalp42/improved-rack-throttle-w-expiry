@@ -20,6 +20,8 @@ module Rack; module Throttle
     # @option options [String]  :key_prefix (nil)
     # @option options [Integer] :code       (403)
     # @option options [String]  :message    ("Rate Limit Exceeded")
+    # @option options [String]  :header     (Hash.new)
+    # @option options [String]  :whitelist  (Array.new)
     def initialize(app, options = {})
       rules = options.delete(:rules) || {}
       @app, @options, @matchers = app, options, []
@@ -37,7 +39,8 @@ module Rack; module Throttle
       request = Rack::Request.new(env)
       match_results = @matchers.map { |m| m.match?(request) }.uniq
       applicable = @matchers.empty? || match_results == [true]
-      if applicable and !allowed?(request)
+      whitelist = options[:whitelist] || []
+      if applicable and !allowed?(request) and !whitelist.include?(request.ip.to_s)
         rate_limit_exceeded
       else
         app.call(env)
@@ -201,7 +204,8 @@ module Rack; module Throttle
     #
     # @return [Array(Integer, Hash, #each)]
     def rate_limit_exceeded
-      headers = respond_to?(:retry_after) ? {'Retry-After' => retry_after.to_f.ceil.to_s} : {}
+      header =  options[:header] || 'Retry-After'
+      headers = respond_to?(:retry_after) ? {options[:header] => retry_after.to_f.ceil.to_s} : {}
       http_error(options[:code] || 403, options[:message] || 'Rate Limit Exceeded', headers)
     end
 
