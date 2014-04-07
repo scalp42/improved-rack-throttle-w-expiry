@@ -209,8 +209,8 @@ module Rack; module Throttle
       http_error(
         options[:code] || 403,
         options[:message] || 'Rate Limit Exceeded',
-        options[:content_type] || 'text/plain; charset=utf-8',
-        headers
+        headers,
+        options[:content_type] || 'text/plain; charset=utf-8'
       )
     end
 
