@@ -205,8 +205,13 @@ module Rack; module Throttle
     # @return [Array(Integer, Hash, #each)]
     def rate_limit_exceeded
       header =  options[:header] || 'Retry-After'
-      headers = respond_to?(:retry_after) ? {options[:header] => retry_after.to_f.ceil.to_s} : {}
-      http_error(options[:code] || 403, options[:message] || 'Rate Limit Exceeded', headers)
+      headers = respond_to?(:retry_after) ? { header => retry_after.to_f.ceil.to_s} : {}
+      http_error(
+        options[:code] || 403,
+        options[:message] || 'Rate Limit Exceeded',
+        options[:content_type] || 'text/plain; charset=utf-8',
+        headers
+      )
     end
 
     ##
@@ -216,9 +221,9 @@ module Rack; module Throttle
     # @param  [String, #to_s]          message
     # @param  [Hash{String => String}] headers
     # @return [Array(Integer, Hash, #each)]
-    def http_error(code, message = nil, headers = {})
+    def http_error(code, message = nil, headers = {}, content_type)
       [ code,
-        { 'Content-Type' => 'text/plain; charset=utf-8' }.merge(headers),
+        { 'Content-Type' => content_type }.merge(headers),
         Array( http_status(code) + (message.nil? ? "\n" : " (#{message})\n") )
       ]
     end
