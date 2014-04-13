@@ -224,7 +224,8 @@ module Rack; module Throttle
     def http_error(code, message = nil, headers = {}, content_type)
       [ code,
         { 'Content-Type' => content_type }.merge(headers),
-        Array( http_status(code) + (message.nil? ? "\n" : " (#{message})\n") )
+        # Array( http_status(code) + (message.nil? ? "\n" : " (#{message})\n") )
+        Array("#{message}\n")
       ]
     end
 
